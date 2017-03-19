@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Roll20 Character Sheet Parser - DnD 5th SRD",
+  "name": "Roll20 Character Parser - DnD 5th SRD",
   "version": "0.1",
   "content_scripts" : [
     {

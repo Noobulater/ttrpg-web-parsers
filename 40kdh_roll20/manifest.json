@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Roll20 Character Sheet Parser - 40k Dark Heresy",
+  "name": "Roll20 Character Parser - 40k Dark Heresy",
   "version": "0.1",
   "content_scripts" : [
     {
