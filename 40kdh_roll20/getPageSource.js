@@ -58,7 +58,7 @@ $("input").each(function(){
           inputs += "\n\nSKILLS-" + "\n";
         }
         if ($(this).attr("checked")) {
-          inputs += skill[1] + "[r="+((parseInt(skill[2]) * parseInt(value))/10)+"]\n";
+          inputs += skill[1] + "[r="+(((parseInt(skill[2]) * parseInt(value))/10)-1)+"]\n";
         }
       }
       else if (attr == "xptospend") {
