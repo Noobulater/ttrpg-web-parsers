@@ -20,6 +20,9 @@ statTranslations["influence"] = "Ifl";
 statTranslations["fellowship"] = "Fel";
 statTranslations["willpower"] = "WP";
 
+// find avatar
+inputs += "img:"+$($(".characterviewer").find(".avatar").find("img")[0]).attr("src") + "\n";
+
 $("input").each(function(){
   var value = ($(this).val() || "").toLowerCase();
   if ($(this).attr("name") && $(this).attr("name").match("attr_") && value && !$(this).attr("name").match("-")) {
