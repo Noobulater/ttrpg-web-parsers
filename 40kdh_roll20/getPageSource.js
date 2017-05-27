@@ -20,6 +20,20 @@ statTranslations["influence"] = "Ifl";
 statTranslations["fellowship"] = "Fel";
 statTranslations["willpower"] = "WP";
 
+var blacklist = {};
+blacklist["shipcrewrating"] = "WS";
+blacklist["shipuncrewrating"] = "BS";
+blacklist["shippowerused"] = "S";
+blacklist["shipspaceused"] = "T";
+blacklist["shipessentialcomponentspowertotal"] = "Ag";
+blacklist["shipessentialcomponentsspacetotal"] = "Int";
+blacklist["shipessentialcomponentpower"] = "Per";
+blacklist["shipessentialcomponentspace"] = "Ifl";
+blacklist["shipsupplementalcomponentspowertotal"] = "Fel";
+blacklist["shipsupplementalcomponentsspacetotal"] = "WP";
+blacklist["shipsupplementalcomponentpower"] = "Ag";
+blacklist["shipsupplementalcomponentspace"] = "Int";
+
 // find avatar
 inputs += "img:"+$($(".characterviewer").find(".avatar").find("img")[0]).attr("src") + "\n";
 
@@ -87,7 +101,7 @@ $("input").each(function(){
         }
         inputs += value + "\n";
       }
-      else if (res) {
+      else if (res && !attr.match("ship")) {
         var attrKey = attr.substring(res.index, attr.length).replace("weapon", "").replace("ranged", "").replace("melee", "");
         if (!inputs.match("INVENTORY-")) {
           inputs += "\n\nINVENTORY-\n";
@@ -123,12 +137,17 @@ $("input").each(function(){
         }
       }
       else {
-        inputs += attr + ":" + value + "\n";
+        if (!blacklist[attr]) {
+          inputs += attr + ":" + value + "\n";
+        }
       }
     }
   }
 });
-
+if (stackData.length) {
+  stackData += "]";
+  inputs += stackData + "\n";
+}
 chrome.runtime.sendMessage({
     action: "getSource",
     source: "INFO-\n" + inputs
